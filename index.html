@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的日记 - 云端同步版</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- PWA 支持 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#6366f1">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>📔 我的日记</h1>
+                <div class="storage-status" id="storageStatus">💾 本地存储</div>
+            </div>
+            
+            <!-- 搜索框 -->
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索日记...">
+            </div>
+            
+            <!-- 筛选按钮 -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="today">今天</button>
+                <button class="filter-btn" data-filter="week">本周</button>
+                <button class="filter-btn" data-filter="month">本月</button>
+            </div>
+            
+            <!-- 日记列表 -->
+            <div class="diary-list" id="diaryList"></div>
+            
+            <!-- 新建按钮 -->
+            <button class="new-btn" id="newDiaryBtn">
+                <span class="icon">+</span>
+                <span>写日记</span>
+            </button>
+        </aside>
+        
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 编辑器模式 -->
+            <div class="editor-panel" id="editorPanel" style="display: none;">
+                <div class="editor-header">
+                    <div class="editor-actions">
+                        <button class="action-btn" id="backBtn">← 返回</button>
+                        <button class="action-btn primary" id="saveBtn">保存</button>
+                    </div>
+                    <div class="editor-date" id="editorDate"></div>
+                </div>
+                
+                <div class="editor-body">
+                    <input type="text" id="diaryTitle" placeholder="标题..." class="diary-title-input">
+                    <textarea id="diaryContent" placeholder="今天发生了什么..." class="diary-content-input"></textarea>
+                </div>
+                
+                <!-- 心情选择 -->
+                <div class="mood-selector">
+                    <span class="mood-label">今日心情：</span>
+                    <button class="mood-btn" data-mood="happy" title="开心">😊</button>
+                    <button class="mood-btn" data-mood="calm" title="平静">😌</button>
+                    <button class="mood-btn" data-mood="sad" title="难过">😢</button>
+                    <button class="mood-btn" data-mood="angry" title="生气">😠</button>
+                    <button class="mood-btn" data-mood="excited" title="兴奋">🤩</button>
+                    <button class="mood-btn" data-mood="tired" title="疲惫">😴</button>
+                </div>
+            </div>
+            
+            <!-- 预览模式 -->
+            <div class="preview-panel" id="previewPanel">
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-icon">📝</div>
+                    <h2>选择一篇日记或写新的</h2>
+                    <p>点击左侧的"写日记"开始记录你的生活</p>
+                </div>
+                
+                <div class="diary-preview" id="diaryPreview" style="display: none;">
+                    <div class="preview-header">
+                        <h2 id="previewTitle"></h2>
+                        <div class="preview-meta">
+                            <span id="previewDate"></span>
+                            <span id="previewMood"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-content" id="previewContent"></div>
+                    
+                    <div class="preview-actions">
+                        <button class="edit-btn" id="editBtn">编辑</button>
+                        <button class="delete-btn" id="deleteBtn">删除</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
